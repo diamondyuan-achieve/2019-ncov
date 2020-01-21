@@ -21,7 +21,7 @@
 </style>
 
 <div class="p-3">
-  <p>数据来源于丁香园</p>
+  <p>数据来源于丁香园, 每 10 分钟同步一次。</p>
   <p class="text-sm text-gray-500">{info.time}</p>
   <p class="text-sm">{info.confirmedNumber}</p>
 </div>
