@@ -11,7 +11,7 @@
     "proxy": "node proxy",
     "dev": "run-p build:auto serve:dev proxy",
     "load": "node data.js",
-    "release": "yarn load && node data.js"
+    "release": "yarn load && yarn build && node upload.js"
   },
   "repository": {
     "type": "git",
