@@ -45,6 +45,7 @@ const loadNews = async data => {
   if (result.length === 0) {
     throw new Error("fetch error");
   }
+  console.log(`Get ${result.length} news`);
   fs.writeFileSync(
     path.resolve(__dirname, "./src/data/newsList.json"),
     JSON.stringify(result, null, 2)
@@ -67,6 +68,7 @@ const loadCityList = async data => {
   if (result.length === 0) {
     throw new Error("fetch error");
   }
+  console.log(`Get ${result.length} city data`);
   fs.writeFileSync(
     path.resolve(__dirname, "./src/data/cityList.json"),
     JSON.stringify(result, null, 2)
