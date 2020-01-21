@@ -1,5 +1,6 @@
 <script>
   import cities from "./data/cityList.json";
+  import info from "./data/info.json";
   import newsList from "./data/newsList.json";
 
   function refresh() {
@@ -19,7 +20,11 @@
   }
 </style>
 
-<div class="p-3">数据来源于丁香园</div>
+<div class="p-3">
+  <p>数据来源于丁香园</p>
+  <p class="text-sm text-gray-500">{info.time}</p>
+  <p class="text-sm">{info.confirmedNumber}</p>
+</div>
 
 <div class="bg-white">
   <div

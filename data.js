@@ -75,9 +75,30 @@ const loadCityList = async data => {
   );
 };
 
+const loadInfo = async data => {
+  const time = $(data)
+    .find(".mapTitle___2QtRg")
+    .text();
+  const confirmedNumber = $(data)
+    .find(".confirmedNumber___3WrF5")
+    .text();
+  fs.writeFileSync(
+    path.resolve(__dirname, "./src/data/info.json"),
+    JSON.stringify(
+      {
+        confirmedNumber,
+        time
+      },
+      null,
+      2
+    )
+  );
+};
+
 (async () => {
   const data = await request("https://3g.dxy.cn/newh5/view/pneumonia");
   await loadNews(data);
   await loadCityList(data);
+  await loadInfo(data);
   console.log("success");
 })();
