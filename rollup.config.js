@@ -4,6 +4,8 @@ import postcss from "rollup-plugin-postcss";
 import resolve from "rollup-plugin-node-resolve";
 import svelte from "rollup-plugin-svelte";
 import { terser } from "rollup-plugin-terser";
+import json from "@rollup/plugin-json";
+
 import svelte_preprocess_postcss from "svelte-preprocess-postcss";
 
 const production = !process.env.ROLLUP_WATCH;
@@ -16,6 +18,7 @@ export default {
     file: "dist/main.js"
   },
   plugins: [
+    json(),
     svelte({
       dev: !production,
       preprocess: {
