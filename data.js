@@ -3,12 +3,11 @@ const $ = require("cheerio");
 const fs = require("fs");
 const path = require("path");
 
-(async () => {
+const loadNews = async () => {
   const data = await request("https://3g.dxy.cn/newh5/view/pneumonia");
-
   const newsList = Array.from($(data).find(".block___wqUAz"));
   const result = [];
-  newsList.map(news => {
+  newsList.forEach(news => {
     const leftTimeNode = $(news).find(".leftTime___2zf53");
 
     let leftTime;
@@ -49,4 +48,30 @@ const path = require("path");
     path.resolve(__dirname, "./src/data/newsList.json"),
     JSON.stringify(result, null, 2)
   );
+};
+
+const loadCityList = async () => {
+  const data = await request("https://3g.dxy.cn/newh5/view/pneumonia");
+  const cityList = Array.from(
+    $(data)
+      .find(".descBox___3dfIo")
+      .find(".descList___3iOuI")
+  );
+  const result = [];
+  cityList.map(city => {
+    const data = $(city).text();
+    result.push({
+      data
+    });
+  });
+  fs.writeFileSync(
+    path.resolve(__dirname, "./src/data/cityList.json"),
+    JSON.stringify(result, null, 2)
+  );
+};
+
+(async () => {
+  await loadNews();
+  await loadCityList();
+  console.log("success");
 })();
