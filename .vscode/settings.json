@@ -1,0 +1,7 @@
+{
+  "css.validate": false,
+  "svelte.plugin.css.diagnostics.enable": false,
+  "emmet.includeLanguages": {
+    "postcss": "css"
+  }
+}

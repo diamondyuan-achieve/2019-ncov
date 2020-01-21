@@ -1,0 +1,35 @@
+@custom-selector :--headings h1, h2, h3, h4, h5, h6;
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: system-ui;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+:--links {
+  color: blue;
+  text-decoration: underline;
+}
+
+:--headings {
+  margin: 0.75rem 0;
+}
