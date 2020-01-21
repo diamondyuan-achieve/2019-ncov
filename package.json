@@ -10,7 +10,8 @@
     "serve:dev": "sirv dist --dev",
     "proxy": "node proxy",
     "dev": "run-p build:auto serve:dev proxy",
-    "load": "node data.js"
+    "load": "node data.js",
+    "release": "yarn load && node data.js"
   },
   "repository": {
     "type": "git",
