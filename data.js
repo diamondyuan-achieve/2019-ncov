@@ -3,8 +3,7 @@ const $ = require("cheerio");
 const fs = require("fs");
 const path = require("path");
 
-const loadNews = async () => {
-  const data = await request("https://3g.dxy.cn/newh5/view/pneumonia");
+const loadNews = async data => {
   const newsList = Array.from($(data).find(".block___wqUAz"));
   const result = [];
   newsList.forEach(news => {
@@ -43,15 +42,16 @@ const loadNews = async () => {
       topicFrom
     });
   });
-
+  if (result.length === 0) {
+    throw new Error("fetch error");
+  }
   fs.writeFileSync(
     path.resolve(__dirname, "./src/data/newsList.json"),
     JSON.stringify(result, null, 2)
   );
 };
 
-const loadCityList = async () => {
-  const data = await request("https://3g.dxy.cn/newh5/view/pneumonia");
+const loadCityList = async data => {
   const cityList = Array.from(
     $(data)
       .find(".descBox___3dfIo")
@@ -64,6 +64,9 @@ const loadCityList = async () => {
       data
     });
   });
+  if (result.length === 0) {
+    throw new Error("fetch error");
+  }
   fs.writeFileSync(
     path.resolve(__dirname, "./src/data/cityList.json"),
     JSON.stringify(result, null, 2)
@@ -71,7 +74,8 @@ const loadCityList = async () => {
 };
 
 (async () => {
-  await loadNews();
-  await loadCityList();
+  const data = await request("https://3g.dxy.cn/newh5/view/pneumonia");
+  await loadNews(data);
+  await loadCityList(data);
   console.log("success");
 })();
