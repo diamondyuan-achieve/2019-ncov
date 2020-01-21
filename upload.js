@@ -4,7 +4,9 @@ const fs = require("fs");
 
 const dist = path.resolve(__dirname, "dist");
 
-const files = fs.readdirSync(dist).filter(o => !o.startsWith("."));
+const files = fs
+  .readdirSync(dist)
+  .filter(o => !o.startsWith(".") && !o.endsWith(".map"));
 
 let accessKey = process.env.accessKey;
 let secretKey = process.env.secretKey;
