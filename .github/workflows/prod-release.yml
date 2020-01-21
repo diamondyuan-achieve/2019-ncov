@@ -2,7 +2,7 @@ name: Actions Release
 
 on:
   schedule:
-    - cron: "*/5 * * * * *"
+    - cron: "*/5 * * * *"
   push:
     branches:
       - master
