@@ -1,7 +1,25 @@
 <script>
   import cities from "./data/cityList.json";
   import newsList from "./data/newsList.json";
+
+  function refresh() {
+    document.documentElement.scrollTop = 0;
+    window.location.reload(true);
+  }
 </script>
+
+<style type="text/postcss">
+  .refresh-button {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 90%;
+    margin: 10px 5%;
+    @apply bg-blue-700 rounded-lg text-white h-12;
+  }
+</style>
+
+<div class="p-3">数据来源于丁香园</div>
 
 <div class="bg-white">
   <div
@@ -17,7 +35,7 @@
 
 </div>
 
-<div class="bg-white">
+<div class="bg-white pb-10">
   <div
     class="bg-red-100 border-l-4 border-red-500 text-orange-700 p-2"
     role="alert">
@@ -31,5 +49,6 @@
       <p class="text-sm text-gray mb-4">来源: {news.topicFrom}</p>
     {/each}
   </div>
-
 </div>
+
+<button class="refresh-button" on:click={refresh}>刷新数据</button>
