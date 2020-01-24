@@ -2,6 +2,10 @@
   import cities from "./data/cityList.json";
   import info from "./data/info.json";
   import newsList from "./data/newsList.json";
+  import dayjs from "dayjs";
+  import relativeTime from "dayjs/plugin/relativeTime";
+  import "dayjs/locale/zh-cn";
+  dayjs.extend(relativeTime);
 
   function refresh() {
     document.documentElement.scrollTop = 0;
@@ -49,7 +53,14 @@
   <div class="p-3">
     {#each newsList as news}
       <h2 class="font-medium text-lg mb-1">{news.topicTitle}</h2>
-      <p class="text-sm text-gray-500 mb-1">{news.leftTime}</p>
+      <p class="text-sm text-gray-500 mb-1">
+        {dayjs(news.leftTime)
+          .locale('zh-cn')
+          .fromNow()}
+        <span class="pl-2">
+          {dayjs(news.leftTime).format('MM-DD HH:mm:ss')}
+        </span>
+      </p>
       <p class="leading-normal text-grey-darker mb-1">{news.topicContent}</p>
       <p class="text-sm text-gray mb-4">来源: {news.topicFrom}</p>
     {/each}

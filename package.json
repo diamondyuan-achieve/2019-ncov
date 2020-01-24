@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
+    "dayjs": "^1.8.19",
     "express": "^4.17.1",
     "http-proxy-middleware": "^0.20.0",
     "lodash.debounce": "^4.0.8",

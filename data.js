@@ -8,7 +8,7 @@ const loadNews = async data => {
     .match(/window.getTimelineService = (.*?)}catch/)[0]
     .slice(28, -6);
   const result = JSON.parse(newsList).map(o => ({
-    leftTime: o.pubDateStr,
+    leftTime: o.pubDate,
     topicTitle: o.title,
     topicContent: o.summary,
     topicFrom: o.infoSource
@@ -31,7 +31,6 @@ const loadCityList = async data => {
       data: `${o.provinceName} 确诊 ${o.confirmedCount} 例。`
     };
   });
-  console.log(JSON.parse(cityList));
   console.log(`Get ${result.length} city data`);
   fs.writeFileSync(
     path.resolve(__dirname, "./src/data/cityList.json"),

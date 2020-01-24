@@ -878,6 +878,11 @@ data-uri-to-buffer@1:
   resolved "https://registry.npm.taobao.org/data-uri-to-buffer/download/data-uri-to-buffer-1.2.0.tgz?cache=0&sync_timestamp=1569621188408&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdata-uri-to-buffer%2Fdownload%2Fdata-uri-to-buffer-1.2.0.tgz#77163ea9c20d8641b4707e8f18abdf9a78f34835"
   integrity sha1-dxY+qcINhkG0cH6PGKvfmnjzSDU=
 
+dayjs@^1.8.19:
+  version "1.8.19"
+  resolved "https://registry.npm.taobao.org/dayjs/download/dayjs-1.8.19.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdayjs%2Fdownload%2Fdayjs-1.8.19.tgz#5117dc390d8f8e586d53891dbff3fa308f51abfe"
+  integrity sha1-URfcOQ2PjlhtU4kdv/P6MI9Rq/4=
+
 debug@2, debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.9:
   version "2.6.9"
   resolved "https://registry.npm.taobao.org/debug/download/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
