@@ -4,44 +4,15 @@ const fs = require("fs");
 const path = require("path");
 
 const loadNews = async data => {
-  const newsList = Array.from($(data).find(".block___wqUAz"));
-  const result = [];
-  newsList.forEach(news => {
-    const leftTimeNode = $(news).find(".leftTime___2zf53");
-
-    let leftTime;
-    if (leftTimeNode.children().length == 2) {
-      leftTime = leftTimeNode.children().text();
-    } else {
-      leftTime = leftTimeNode
-        .text()
-        .replace("月 ", "-")
-        .replace("日", " ");
-    }
-
-    let topicTitle = $(news)
-      .find(".topicTitle___2ovVO")
-      .text();
-    if (topicTitle.startsWith("最新")) {
-      topicTitle = topicTitle.slice(2);
-    }
-
-    let topicContent = $(news)
-      .find(".topicContent___1KVfy")
-      .text();
-
-    let topicFrom = $(news)
-      .find(".topicFrom___3xlna")
-      .text()
-      .replace("信息来源：", "");
-
-    result.push({
-      leftTime,
-      topicTitle,
-      topicContent,
-      topicFrom
-    });
-  });
+  const newsList = data
+    .match(/window.getTimelineService = (.*?)}catch/)[0]
+    .slice(28, -6);
+  const result = JSON.parse(newsList).map(o => ({
+    leftTime: o.pubDateStr,
+    topicTitle: o.title,
+    topicContent: o.summary,
+    topicFrom: o.infoSource
+  }));
   if (result.length === 0) {
     throw new Error("fetch error");
   }
@@ -51,23 +22,16 @@ const loadNews = async data => {
     JSON.stringify(result, null, 2)
   );
 };
-
 const loadCityList = async data => {
-  const cityList = Array.from(
-    $(data)
-      .find(".descBox___3dfIo")
-      .find(".descList___3iOuI")
-  );
-  const result = [];
-  cityList.map(city => {
-    const data = $(city).text();
-    result.push({
-      data
-    });
+  const cityList = data
+    .match(/window.getAreaStat = (.*?)}catch/)[0]
+    .slice("window.getAreaStat = ".length, -1 - "}catc".length);
+  const result = JSON.parse(cityList).map(o => {
+    return {
+      data: `${o.provinceName} 确诊 ${o.confirmedCount} 例。`
+    };
   });
-  if (result.length === 0) {
-    throw new Error("fetch error");
-  }
+  console.log(JSON.parse(cityList));
   console.log(`Get ${result.length} city data`);
   fs.writeFileSync(
     path.resolve(__dirname, "./src/data/cityList.json"),
