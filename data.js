@@ -27,8 +27,9 @@ const loadCityList = async data => {
     .match(/window.getAreaStat = (.*?)}catch/)[0]
     .slice("window.getAreaStat = ".length, -1 - "}catc".length);
   const result = JSON.parse(cityList).map(o => {
+    console.log(o);
     return {
-      data: `${o.provinceName} 确诊 ${o.confirmedCount} 例。`
+      data: `${o.provinceName} 确诊 ${o.confirmedCount} 例, 死亡 ${o.deadCount} 例, 治愈 ${o.curedCount} 例。`
     };
   });
   console.log(`Get ${result.length} city data`);
