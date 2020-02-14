@@ -1,8 +1,6 @@
 name: Actions Release
 
 on:
-  schedule:
-    - cron: "*/10 * * * *"
   push:
     branches:
       - master
